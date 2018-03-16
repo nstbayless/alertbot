@@ -1,0 +1,13 @@
+{
+  "name": "alertbot",
+  "version": "1.0.0",
+  "description": "discord bot to alert mods when messages are sent that contain certain text",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "NaOH",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "logChannel" : "raunch-log",
+  "modRoles": ["mod", "mod-staff", "modstaff", "modStaff", "Modstaff"]
+}
