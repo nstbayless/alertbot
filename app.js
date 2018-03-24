@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const secret = require("./secret.json")
 const config = require("./config.json")
 const fs = require('fs');
+var rawLog = fs.createWriteStream('rawLog.txt');
 
 raunchyRegex = null
 
@@ -54,7 +55,7 @@ function get_raunchy(msg) {
 // logs raunchiness from a message
 function report_message(msg, raunch) {
   report_to(
-    "" + msg.author.username + "#" + msg.author.discriminator + " said in " + msg.channel + ": \""
+    "----------------\n" + msg.author.username + "#" + msg.author.discriminator + " said in " + msg.channel + ": \""
       + raunch.join(",\" \"") + "\".\n\n> " + msg.content,
     msg.guild
   )
@@ -73,7 +74,6 @@ function report_to(str, guild)
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  
   setInterval(function(){
     client.user.setStatus("invisible")
   }, 300);
@@ -99,6 +99,10 @@ client.on('disconnected', () =>
 })
 
 setInterval(function(){
-    console.log("auto-reconnect...")
-    client.login(secret.token);
-}, 300000);
+    console.log("auto-disconnect...")
+    process.exit();
+}, 100000);
+
+client.on("raw", (rawObj) => {
+    rawLog.write(JSON.stringify(rawObj)+"\n");
+});
