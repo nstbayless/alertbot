@@ -15,6 +15,7 @@ function sanitize(text)
 
 // load raunchy words
 setInterval(function(){
+  raunchyRegexString = ""
   try {
     raunchyRegexString = String(fs.readFileSync("./dirty.txt"))
   } catch (err) {
